@@ -7,10 +7,15 @@
 
       <!-- menu -->
       <!-- <app-menu /> -->
-      <app-menu2 />
+      <app-menu />
 
-      <!-- color mixin -->
-      <color-mixin />
+      <!-- router view -->
+
+      <router-view v-slot="{ Component}">
+        <slide-fade-animation class="animate__faster">
+        <component :is="Component"/>
+        </slide-fade-animation>
+      </router-view>
 
     </div>
   </div>
@@ -19,20 +24,19 @@
 <script>
 import './styles/global.scss'
 import AppHeader from './components/AppHeader'
-import ColorMixin from './components/ColorMixin'
-import AppMenu2 from './components/AppMenu2'
+import AppMenu from './components/AppMenu'
+import SlideFadeAnimation from './components/shared/SlideFadeAnimation'
 export default {
   name: 'App',
   components: {
     AppHeader,
-    ColorMixin,
-    // AppMenu,
-    AppMenu2
+    AppMenu,
+    SlideFadeAnimation
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
   max-width: 800px;
   margin: 0 auto;

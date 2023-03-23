@@ -1,57 +1,40 @@
 <template>
-  <div>
-      <div class="card">
-          <h3>Default</h3>
-          <TabMenu model="items" />
-          <router-view/>
-      </div>
+  <div class="main">
+      <router-link to="/"><button><i class="pi pi-home"></i> Home</button></router-link>
+      <router-link to="/mixin"><button><i class="pi pi-filter"></i> Mixin</button></router-link>
+      <router-link to="/about"><button><i class="pi pi-info"></i> About</button></router-link>
   </div>
 </template>
 
 <script>
-import TabMenu from 'primevue/tabmenu'
 export default {
-  name: 'AppMenu',
-  data () {
-    return {
-      active: 3,
-      items: [
-        {
-          label: 'Home',
-          icon: 'pi pi-fw pi-home',
-          to: '/'
-        },
-        {
-          label: 'Calendar',
-          icon: 'pi pi-fw pi-calendar',
-          to: '/calendar'
-        },
-        {
-          label: 'Edit',
-          icon: 'pi pi-fw pi-pencil',
-          to: '/edit'
-        },
-        {
-          label: 'Documentation',
-          icon: 'pi pi-fw pi-file',
-          to: '/documentation'
-        },
-        {
-          label: 'Settings',
-          icon: 'pi pi-fw pi-cog',
-          to: '/settings'
-        }
-      ]
-    }
-  },
-  components: {
-    TabMenu
-  }
+  name: 'AppMenu'
 }
 </script>
 
-<style scoped lang="scss">
-::v-deep(.tabmenudemo-content) {
-  padding: 2rem 1rem;
-}
+<style lang="scss" scoped>
+@import '@/styles/variables';
+  .main {
+      @include box-shadow-1;
+      display: flex;
+      align-items: center;
+      height: 2.7rem;
+      background-color: #f0f0f0;
+      border-radius: 1rem;
+      overflow: hidden;
+      button {
+          height: 2.7rem;
+          width: 5rem;
+          border: 0;
+          margin-left: 1rem;
+          cursor: pointer;
+          i {
+              font-size: 0.8rem;
+              padding-right: 5px;
+          }
+      }
+      button:hover {
+              background-color: #d8d8d8;
+          }
+  }
 </style>
