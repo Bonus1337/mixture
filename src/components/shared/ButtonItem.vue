@@ -1,10 +1,16 @@
 <template>
   <button
   @click="$emit('click')"
-  :style="btnStyles"
-  class="btn">
-  <span
-      :class="`fas fa-${icon}`" />
+    :style="btnStyles"
+    class="btn">
+    <!-- icon -->
+<span
+v-if="icon"
+:class="`${iconSet} ${icon}`" />
+
+<!-- text -->
+<slot></slot>
+
   </button>
 </template>
 
@@ -13,16 +19,22 @@ export default {
   name: 'ButtonItem',
   props: {
     icon: {
-      type: String,
-      required: true
+      type: String
     },
-    fontSize: {
-      type: Number,
-      default: 1
+    iconSet: {
+      type: String,
+      default: 'pi'
+    },
+    text: {
+      type: String
     },
     size: {
       type: Number,
       default: 2
+    },
+    fontSize: {
+      type: Number,
+      default: 1
     },
     movement: {
       type: Number,
@@ -49,13 +61,13 @@ export default {
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 20px 40px 0 rgba(107, 154, 212, 0.1);
-  transition: 0.3s;
+  box-shadow: 0 20px 40px 0 rgba(107,154,212,.1);
+  transition: .3s;
   outline: none;
   font-size: 1.5rem;
   color: #637892;
   &:hover {
-  margin-top: var(--movement);
+margin-top: var(--movement);
 }
 }
 </style>
