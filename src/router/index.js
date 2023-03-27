@@ -4,38 +4,44 @@ import About from "@/pages/AboutPage.vue";
 import Mixin from "@/pages/MixinPage.vue";
 import Error from "@/pages/ErrorPage.vue";
 import Color from "@/pages/ColorPage.vue";
+import MyColors from "@/pages/MyColorsPage.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
   },
   {
     path: "/about",
     name: "About",
-    component: About
+    component: About,
   },
   {
     path: "/mixin",
     name: "Mixin",
-    component: Mixin
+    component: Mixin,
   },
   {
     path: "/:pathMatch(.*)*",
     name: "Error",
-    component: Error
+    component: Error,
   },
   {
     path: "/color/:red?/:green?/:blue?",
     name: "Color",
-    component: Color
-  }
+    component: Color,
+  },
+  {
+    path: "/myColors",
+    name: "myColors",
+    component: MyColors,
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 export default router;

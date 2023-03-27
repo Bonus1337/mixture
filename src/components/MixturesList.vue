@@ -2,30 +2,24 @@
   <!-- mixtures -->
   <ul class="mixtures">
     <flask-item
-  :key="index"
-  v-for="(mixture, index) in mixtures"
-  :variant="mixture.variant"
-  :amount="mixture.amount"
-  @increment="$emit('increment', index)"
-  @decrement="$emit('decrement', index)" />
+      :key="index"
+      v-for="(mixture, index) in mixtures"
+      :variant="mixture.variant"
+      :amount="mixture.amount"
+      @increment="$emit('increment', index)"
+      @decrement="$emit('decrement', index)"
+    />
   </ul>
 </template>
 
 <script>
-import FlaskItem from './shared/FlaskItem.vue'
-
+import { mapGetters } from "vuex";
+import FlaskItem from "./shared/FlaskItem";
 export default {
-  name: 'Mixtures',
-  components: {
-    FlaskItem
-  },
-  props: {
-    mixtures: {
-      type: Array,
-      required: true
-    }
-  }
-}
+  name: "MixturesList",
+  computed: mapGetters({ mixtures: "Mixtures" }),
+  components: { FlaskItem },
+};
 </script>
 
 <style scoped lang="scss">

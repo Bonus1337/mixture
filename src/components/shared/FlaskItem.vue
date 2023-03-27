@@ -1,14 +1,11 @@
 <template>
-
   <div
     class="flask animate__animated"
     :style="flaskStyle"
     :class="{ animate__shakeY: isAnimated }"
     @animationend="isAnimated = false"
   >
-
     <!-- decrement btn -->
-
     <button-item
       v-if="buttonsVisible"
       class="flask__btn flask__btn--left"
@@ -21,21 +18,23 @@
 
     <div :class="fillClasses" :style="fillStyle" />
 
-    <!-- increment btn -->
+    <!-- delete btn -->
+    <button-item
+      v-if="deleteVisible"
+      class="flask__btn flask__btn--center"
+      icon="pi-trash"
+      :movement="-0.5"
+      @click="$emit('remove')"
+    />
 
     <button-item
       v-if="buttonsVisible"
       class="flask__btn flask__btn--right"
       icon="pi-arrow-up"
       :movement="-0.5"
-      @click="
-        addAnimation();
-        $emit('increment');
-      "
+      @click="addAnimation(), $emit('increment')"
     />
-
   </div>
-
 </template>
 
 <script>
@@ -45,31 +44,35 @@ export default {
   props: {
     size: {
       type: Number,
-      default: 10
+      default: 10,
     },
     amount: {
       type: Number,
-      default: 50
+      default: 50,
     },
     color: {
-      type: String
+      type: String,
     },
     variant: {
-      type: String
+      type: String,
     },
     buttonsVisible: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
+    deleteVisible: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
-    isAnimated: false
+    isAnimated: false,
   }),
   computed: {
     flaskStyle() {
       return {
         height: `${this.size}rem`,
-        width: `${this.size}rem`
+        width: `${this.size}rem`,
       };
     },
     fillClasses() {
@@ -82,16 +85,16 @@ export default {
         style.height = 100 + "%";
       }
       return style;
-    }
+    },
   },
   methods: {
     addAnimation() {
       this.isAnimated = true;
-    }
+    },
   },
   components: {
-    ButtonItem
-  }
+    ButtonItem,
+  },
 };
 </script>
 
@@ -142,7 +145,9 @@ export default {
     &--left {
       left: 1rem;
     }
+    &--center {
+      left: 40%;
+    }
   }
 }
 </style>
-
